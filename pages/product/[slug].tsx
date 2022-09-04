@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { NextPage, GetStaticPaths, GetStaticProps } from 'next';
+import { useRouter } from 'next/router';
 
 import { Box, Button, Chip, Grid, Typography } from '@mui/material';
 
@@ -8,6 +9,7 @@ import { ProductSlideshow, SizeSelector } from 'components/products';
 import { ItemCounter } from 'components/ui';
 import { ICartProduct, IProduct, ISize } from 'interfaces';
 import { dbProducts } from 'database';
+import { CartContext } from 'context';
 
 
 interface Props {
@@ -17,6 +19,9 @@ interface Props {
 
 
 const ProductPage:NextPage<Props> = ({ product }) => {
+
+  const router = useRouter();
+  const { addProductToCart } = useContext(CartContext)
 
   const [tempCartProduct, setTempCartProduct] = useState<ICartProduct>({
     _id: product._id,
@@ -44,7 +49,11 @@ const ProductPage:NextPage<Props> = ({ product }) => {
   }
 
   const onAddProduct = () => {
-    console.log({ tempCartProduct });
+    if ( !tempCartProduct.size ) { return; }
+
+    // TODO: llamar la acción del context para agregar al carrito
+    addProductToCart( tempCartProduct );
+    router.push('/cart')
   }
 
 
@@ -192,3 +201,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 export default ProductPage
+function addProductToCart() {
+  throw new Error('Function not implemented.');
+}
