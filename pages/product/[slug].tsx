@@ -1,11 +1,12 @@
-import { NextPage, GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
+import { useState } from 'react';
+import { NextPage, GetStaticPaths, GetStaticProps } from 'next';
 
 import { Box, Button, Chip, Grid, Typography } from '@mui/material';
 
 import { ShopLayout } from 'components/layouts'
 import { ProductSlideshow, SizeSelector } from 'components/products';
 import { ItemCounter } from 'components/ui';
-import { IProduct } from 'interfaces';
+import { ICartProduct, IProduct, ISize } from 'interfaces';
 import { dbProducts } from 'database';
 
 
@@ -17,9 +18,23 @@ interface Props {
 
 const ProductPage:NextPage<Props> = ({ product }) => {
 
-  // const router = useRouter()
-  // const { products: product, isLoading } = useProducts<IProduct>(`/products/${ router.query.slug }`);
+  const [tempCartProduct, setTempCartProduct] = useState<ICartProduct>({
+    _id: product._id,
+    image: product.images[0],
+    price: product.price,
+    size: undefined,
+    slug: product.slug,
+    title: product.title,
+    gender: product.gender,
+    quantity: 1,
+  })
 
+  const selectedSize = ( size: ISize ) => {
+    setTempCartProduct( currentProduct => ({
+      ...currentProduct,
+      size
+    }));
+  }
 
 
 
@@ -44,7 +59,10 @@ const ProductPage:NextPage<Props> = ({ product }) => {
               <ItemCounter />
               <SizeSelector
                 // selectedSize={ product.sizes[0] }
-                sizes={ product.sizes } />
+                sizes={ product.sizes }
+                selectedSize={ tempCartProduct.size }
+                onSelectedSize={ selectedSize }
+              />
             </Box>
 
             {/* Agregar al carrito */}
@@ -52,7 +70,11 @@ const ProductPage:NextPage<Props> = ({ product }) => {
               (product.inStock > 0)
               ? (
                   <Button color='secondary' className='circular-btn'>
-                    Agregar al carrito
+                    {
+                      tempCartProduct.size
+                      ? 'Agregar al carrito'
+                      : 'Seleccione una talla'
+                    }
                   </Button>
               )
               : (
