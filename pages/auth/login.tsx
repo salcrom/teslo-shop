@@ -38,12 +38,14 @@ const LoginPage = () => {
             setTimeout(() => setShowError(false), 3000);
         }
 
+        // TODO: navegar a la pantalla que el usuario estaba
+
     }
 
 
     return (
         <AuthLayout title={'Ingresar'}>
-            <form onSubmit={ handleSubmit(onLoginUser) }>
+            <form onSubmit={ handleSubmit(onLoginUser) } noValidate>
                 <Box sx={{ width: 350, padding: '10px 20px' }}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
@@ -107,7 +109,6 @@ const LoginPage = () => {
                                 </Link>
                             </NextLink>
                         </Grid>
-
                     </Grid>
                 </Box>
             </form>
