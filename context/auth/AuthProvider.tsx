@@ -1,10 +1,11 @@
-import { FC, useReducer, PropsWithChildren } from 'react';
+import { FC, useReducer, PropsWithChildren, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
 import { AuthContext, authReducer } from './';
 import { IUser } from 'interfaces';
 import { tesloApi } from 'api';
 import axios from 'axios';
+import { Email } from '@mui/icons-material';
 
 export interface AuthState {
     isLoggedIn: boolean;
@@ -20,8 +21,28 @@ export const AuthProvider:FC<PropsWithChildren> = ({ children }) => {
 
     const [state, dispatch] = useReducer(authReducer, AUTH_INITIAL_STATE)
 
+    useEffect(() => {
+        checkToken()
+    }, [])
+
+    const checkToken = async() => {
+        try {
+            // llamar al endpoint
+            const { data } = await tesloApi.get('/user/validate-token')
+            // Revalidar token guardando el nuevo
+            const { token, user } = data;
+            Cookies.set('token', token)
+            // Dispatch login
+            dispatch({ type: '[Auth] - Login', payload: user })
+        } catch (error) {
+            Cookies.remove('token')
+        }
+
+    }
+
+
     const loginUser = async( email: string, password: string ):Promise<boolean> => {
-        
+
         try {
             const { data } = await tesloApi.post('/user/login', { email, password })
             const { token, user } = data;
@@ -66,6 +87,7 @@ export const AuthProvider:FC<PropsWithChildren> = ({ children }) => {
             // methods
             loginUser,
             registerUser,
+            checkToken
         }}>
             { children }
         </AuthContext.Provider>
