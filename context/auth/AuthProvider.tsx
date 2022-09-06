@@ -1,4 +1,5 @@
 import { FC, useReducer, PropsWithChildren, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 
 import { AuthContext, authReducer } from './';
@@ -20,6 +21,7 @@ const AUTH_INITIAL_STATE: AuthState = {
 export const AuthProvider:FC<PropsWithChildren> = ({ children }) => {
 
     const [state, dispatch] = useReducer(authReducer, AUTH_INITIAL_STATE)
+    const router = useRouter()
 
     useEffect(() => {
         checkToken()
@@ -82,6 +84,12 @@ export const AuthProvider:FC<PropsWithChildren> = ({ children }) => {
         }
     }
 
+    const logout = () => {
+        Cookies.remove('token');
+        Cookies.remove('cart');
+        router.reload();
+    }
+
 
 
     return (
@@ -91,7 +99,7 @@ export const AuthProvider:FC<PropsWithChildren> = ({ children }) => {
             // methods
             loginUser,
             registerUser,
-            checkToken
+            logout,
         }}>
             { children }
         </AuthContext.Provider>
