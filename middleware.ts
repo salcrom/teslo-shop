@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import * as jose from 'jose'
+import * as jose from 'jose' // Esta librería sí que funciona con los middleware para autenticar los JWT.
 
 
 export async function middleware( req: NextRequest ) {
