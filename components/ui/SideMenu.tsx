@@ -1,4 +1,4 @@
-import { Box, Divider, Drawer, IconButton, Input, InputAdornment, List, ListItem, ListItemIcon, ListItemText, ListSubheader } from "@mui/material"
+import { Box, Divider, Drawer, IconButton, Input, InputAdornment, List, ListItem, ListItemIcon, ListItemText, ListSubheader, Button } from '@mui/material';
 import { AccountCircleOutlined, AdminPanelSettings, CategoryOutlined, ConfirmationNumberOutlined, EscalatorWarningOutlined, FemaleOutlined, LoginOutlined, MaleOutlined, SearchOutlined, VpnKeyOutlined } from "@mui/icons-material"
 import { useContext, useState } from "react"
 import { AuthContext, UiContext } from "context"
@@ -111,7 +111,7 @@ export const SideMenu = () => {
                     {
                         isLoggedIn
                         ?(
-                            <ListItem onClick={ logout }>
+                            <ListItem onClick={ logout } button>
                                 <ListItemIcon>
                                     <LoginOutlined/>
                                 </ListItemIcon>
@@ -120,6 +120,7 @@ export const SideMenu = () => {
                         )
                         :(
                             <ListItem
+                                button
                                 onClick={ () => navigateTo(`/auth/login?p=${ router.asPath }`) }>
                                 <ListItemIcon>
                                     <VpnKeyOutlined/>

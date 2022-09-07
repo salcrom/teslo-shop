@@ -39,6 +39,12 @@ const getAddressFromCookies = ():FormData => {
 
 const AddressPage = () => {
 
+    // const [hidrated, setHidrated] = useState(false);
+    // useEffect(() => {
+    //     setHidrated(true);
+    // }, []); si continua el error de hidratación, 
+
+
     const { updateAddress } = useContext(CartContext)
     const router = useRouter();
 
@@ -52,6 +58,7 @@ const AddressPage = () => {
     }
 
     return (
+        // hidrated && (
         <ShopLayout title={"Dirección"} pageDescription={"Confirmar dirección del destino"}>
 
             <form onSubmit={ handleSubmit(onSubmitAddress) } noValidate>
@@ -189,6 +196,7 @@ const AddressPage = () => {
                 </Box>
             </form>
         </ShopLayout>
+    // )
     )
 }
 
