@@ -1,15 +1,18 @@
 import { useContext, useState } from 'react';
+import { GetServerSideProps } from 'next'
 import NextLink from 'next/link';
-import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
+import { getSession, signIn } from 'next-auth/react';
 
+import { useForm } from 'react-hook-form';
 import { Box, Button, Chip, Grid, Link, TextField, Typography } from '@mui/material'
 import { ErrorOutline } from '@mui/icons-material';
 
 import { AuthContext } from 'context';
 import { AuthLayout } from 'components/layouts'
 import { validations } from 'utils';
+import { unstable_getServerSession } from 'next-auth';
 // import { tesloApi } from 'api';
-import { useRouter } from 'next/router';
 
 
 type FormData = {
@@ -31,17 +34,18 @@ const LoginPage = () => {
 
         setShowError(false)
 
-        const isValidLogin = await loginUser( email, password )
+        // const isValidLogin = await loginUser( email, password )
 
-        if ( !isValidLogin ) {
-            setShowError(true)
-            setTimeout(() => setShowError(false), 3000);
-            return;
-        }
+        // if ( !isValidLogin ) {
+        //     setShowError(true)
+        //     setTimeout(() => setShowError(false), 3000);
+        //     return;
+        // }
 
-        // TODO: navegar a la pantalla que el usuario estaba
-        const destination = router.query.p?.toString() || '/'
-        router.replace(destination)
+        // // TODO: navegar a la pantalla que el usuario estaba
+        // const destination = router.query.p?.toString() || '/'
+        // router.replace(destination)
+        await signIn('credentials', { email, password });
 
     }
 
@@ -121,6 +125,29 @@ const LoginPage = () => {
             </form>
         </AuthLayout>
     )
+}
+
+// You should use getServerSideProps when:
+// - Only if you need to pre-render a page whose data must be fetched at request time
+export const getServerSideProps: GetServerSideProps = async ({ req, query }) => {
+    const session = await getSession({ req })
+
+    const { p = '/' } = query;
+
+    if ( session ) {
+        return {
+            redirect: {
+                destination: p.toString(),
+                permanent: false
+            }
+        }
+    }
+
+    return {
+        props: {
+            
+        }
+    }
 }
 
 export default LoginPage

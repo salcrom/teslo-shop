@@ -27,6 +27,11 @@ export default  NextAuth({
         clientSecret: process.env.GITHUB_SECRET!,
         }),
     ],
+    // Custom pages
+    pages: {
+      signIn: '/auth/login',
+      newUser: '/auth/register'
+    },
     // Callbacks
     callbacks: {
       async jwt({ token, account, user }){
