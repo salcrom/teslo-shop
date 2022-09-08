@@ -11,8 +11,7 @@ import { ErrorOutline } from '@mui/icons-material';
 import { AuthContext } from 'context';
 import { AuthLayout } from 'components/layouts'
 import { validations } from 'utils';
-import { unstable_getServerSession } from 'next-auth';
-// import { tesloApi } from 'api';
+
 
 
 type FormData = {
@@ -131,6 +130,7 @@ const LoginPage = () => {
 // - Only if you need to pre-render a page whose data must be fetched at request time
 export const getServerSideProps: GetServerSideProps = async ({ req, query }) => {
     const session = await getSession({ req })
+    // console.log(session)
 
     const { p = '/' } = query;
 
@@ -144,9 +144,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query }) => 
     }
 
     return {
-        props: {
-            
-        }
+        props: {}
     }
 }
 
