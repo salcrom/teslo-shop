@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useRouter } from "next/router"
 
 import Cookies from "js-cookie"
@@ -47,10 +47,27 @@ const AddressPage = () => {
 
     const { updateAddress } = useContext(CartContext)
     const router = useRouter();
+    const [ defaultCountry, setDefaultCountry ] = useState('');
 
-    const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
-        defaultValues: getAddressFromCookies()
+
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
+        defaultValues: {
+            firstName: '',
+            lastName: '',
+            address: '',
+            address2: '',
+            zip: '',
+            city: '',
+            country: countries[0].code,
+            phone: '',
+        }
     });
+
+    useEffect(() => {
+        const address = getAddressFromCookies()
+        reset( address );
+        setDefaultCountry( address.country )
+    }, [ reset ])
 
     const onSubmitAddress = ( data: FormData) => {
         updateAddress( data );
@@ -149,16 +166,17 @@ const AddressPage = () => {
                         <FormControl fullWidth>
                             <TextField
                                 select
+                                key={ defaultCountry }
                                 variant='filled'
                                 label='País'
-                                defaultValue={ Cookies.get('country') || countries[0].code }
+                                defaultValue={ defaultCountry }
                                 {
                                     ...register('country', {
                                         required: 'Este campo es requerido'
                                     })
                                 }
                                 error={ !!errors.country }
-                                // helperText={ errors.country?.message }
+                                helperText={ errors.country?.message }
                             >
                                 {
                                     countries.map( country => (
