@@ -1,14 +1,22 @@
+import { GetServerSideProps, NextPage } from 'next'
 import NextLink from 'next/link';
+import { getSession } from 'next-auth/react';
+
 import { Box, Button, Card, CardContent, Chip, Divider, Grid, Link, Typography } from "@mui/material"
 
 import { CartList, OrderSummary } from "components/cart"
 import { ShopLayout } from "components/layouts"
 import { CreditCardOffOutlined, CreditScoreOutlined } from '@mui/icons-material';
+import { dbOrders } from 'database';
+import { IOrder } from 'interfaces';
+
+interface Props {
+    order: IOrder
+}
 
 
-
-
-const OrderPage = () => {
+const OrderPage:NextPage<Props> = ({ order }) => {
+    console.log({order});
     return (
         <ShopLayout title='Resumen de la orden 123443566' pageDescription={'Resumen de la orden'}>
             <Typography variant='h1' component='h1'>Orden: ABC123</Typography>
@@ -86,4 +94,43 @@ const OrderPage = () => {
     )
 }
 
+// You should use getServerSideProps when:
+// - Only if you need to pre-render a page whose data must be fetched at request time
+export const getServerSideProps: GetServerSideProps = async ({ req, query }) => {
+    const { id = '' } = query;
+    const session:any = await getSession({ req });
+
+    if ( !session ) {
+        return {
+            redirect: {
+                destination: `/auth/login?p=/orders/${ id }`,
+                permanent: false,
+            }
+        }
+    }
+
+    const order = await dbOrders.getOrderById( id.toString() );
+
+    if ( !order ) {
+        return {
+            redirect: {
+                destination: '/orders/history',
+                permanent: false,
+            }}
+    }
+
+    if (order.user !== session.user._id ) {
+        return {
+            redirect: {
+                destination: '/orders/history',
+                permanent: false,
+            }}
+    }
+
+    return {
+        props: {
+            order
+        }
+    }
+}
 export default OrderPage
