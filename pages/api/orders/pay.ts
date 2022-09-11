@@ -89,9 +89,8 @@ const payOrder = async(req: NextApiRequest, res: NextApiResponse<Data>) => {
     dbOrder.transactionId = transactionId;
     dbOrder.isPaid = true;
     await dbOrder.save();
-
     await db.disconnect();
-
+    //! En este punto habría que darle acceso al cliente, si el producto compraado es virtual, independientemente que aún no se hayan completado el resto de tareas.
 
 
     return res.status(200).json({ message: 'Orden pagada' })
