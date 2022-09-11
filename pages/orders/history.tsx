@@ -49,7 +49,7 @@ interface Props {
 
 const HistoryPage:NextPage<Props> = ({ orders }) => {
 
-    console.log({ orders })
+    // console.log({ orders })
     const rows = orders.map( (order, idx) => ({
         id: idx + 1,
         paid: order.isPaid,

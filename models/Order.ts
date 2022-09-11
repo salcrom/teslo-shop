@@ -24,6 +24,7 @@ const orderSchema = new Schema({
         country  : { type: String, required: true },
         phone    : { type: String, required: true },
     },
+
     numberOfItems: { type: Number, required: true },
     subTotal: { type: Number, required: true },
     tax : { type: Number, required: true },
@@ -31,6 +32,9 @@ const orderSchema = new Schema({
 
     isPaid: { type: Boolean, required: true, default: false },
     paidAt: { type: String },
+
+    transactionId: { type: String },
+
 },{
     timestamps: true,
 })
