@@ -3,6 +3,7 @@ import { db, dbOrders } from 'database';
 import { IPaypal } from 'interfaces';
 import { Order } from 'models';
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { useContext } from 'react';
 
 type Data = {
     message: string
@@ -46,8 +47,6 @@ const getPaypalBearerToken = async():Promise<string|null> => {
 
         return null;
     }
-
-
 }
 
 const payOrder = async(req: NextApiRequest, res: NextApiResponse<Data>) => {

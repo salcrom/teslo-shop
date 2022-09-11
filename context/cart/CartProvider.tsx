@@ -143,8 +143,9 @@ export const CartProvider:FC<PropsWithChildren> = ({ children }) => {
 
         try {
             const { data } = await tesloApi.post<IOrder>('/orders', body)
-            
+
             dispatch({ type: '[Cart] - Order complete' })
+            Cookie.set('cart', JSON.stringify([]));
 
             return {
                 hasError: false,
