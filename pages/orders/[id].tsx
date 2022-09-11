@@ -1,4 +1,5 @@
 import { GetServerSideProps, NextPage } from 'next'
+import { useRouter } from 'next/router';
 import { getSession } from 'next-auth/react';
 import { PayPalButtons } from "@paypal/react-paypal-js";
 
@@ -10,7 +11,18 @@ import { CartList, OrderSummary } from "components/cart"
 import { dbOrders } from 'database';
 import { IOrder } from 'interfaces';
 import { countries } from 'utils';
+import { tesloApi } from 'api';
 
+
+export type OrderResponseBody = {
+    id: string;
+    status:
+        | "COMPLETED"
+        | "SAVED"
+        | "APPROVED"
+        | "VOIDED"
+        | "PAYER_ACTION_REQUIRED";
+};
 interface Props {
     order: IOrder
 }
@@ -19,7 +31,27 @@ interface Props {
 const OrderPage:NextPage<Props> = ({ order }) => {
     // console.log({order});
 
+    const router = useRouter();
     const { shippingAddress } = order;
+
+    const onOrderCompleted = async( details: OrderResponseBody ) => {
+        if ( details.status !== 'COMPLETED' ) {
+            return alert('No hay pago en Paypal');
+        }
+
+        try {
+            const { data } = await tesloApi.post(`/orders/pay`, {
+                transactionId: details.id,
+                orderId: order._id
+            })
+
+            router.reload();
+
+        } catch (error) {
+            console.log(error);
+            alert('Error')
+        }
+    }
 
     return (
         <ShopLayout title='Resumen de la orden' pageDescription={'Resumen de la orden'}>
@@ -105,8 +137,9 @@ const OrderPage:NextPage<Props> = ({ order }) => {
                                             }}
                                             onApprove={async(data, actions) => {
                                                 return await actions.order!.capture().then((details) => {
-                                                    console.log({ details })
-                                                    const name = details.payer.name?.given_name;
+                                                    onOrderCompleted( details );
+                                                    // console.log({ details })
+                                                    // const name = details.payer.name?.given_name;
                                                     // alert(`Transaction completed by ${name}`);
                                                 });
                                             }}
