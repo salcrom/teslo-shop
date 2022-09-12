@@ -15,8 +15,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
         case 'POST':
             return payOrder(req, res);
 
-            default:
-                res.status(400).json({ message: 'Bad request' })
+        default:
+            res.status(400).json({ message: 'Bad request' })
     }
 
 }
