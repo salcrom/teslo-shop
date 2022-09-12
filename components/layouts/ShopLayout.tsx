@@ -4,13 +4,12 @@ import { Navbar, SideMenu } from 'components/ui';
 
 
 
-
-
 interface Props {
     title: string;
     pageDescription: string;
     imageFullUrl?: string;
 }
+
 
 
 export const ShopLayout:FC<PropsWithChildren<Props>> = ({ children, title, pageDescription, imageFullUrl }) => {
