@@ -1,38 +1,36 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
 import { getToken } from 'next-auth/jwt'
 export { default } from "next-auth/middleware"
-// import * as jose from 'jose' // Esta librería sí que funciona con los middleware para autenticar los JWT.
 
 
 export async function middleware( req: NextRequest ) {
 
-    const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
-    console.log({session});
+    const session: any = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
+    // console.log({session});
+
+    const { origin } = req.nextUrl.clone();
 
     if ( !session ) {
+        if( req.nextUrl.pathname.startsWith('/api/admin') ) {
+            return NextResponse.redirect(new URL(`${origin}/api/auth/unauthorized`))
+        }
 
-        const { origin } = req.nextUrl.clone();
         const requestedPage = req.nextUrl.pathname;
-        
-        console.log(requestedPage);
-        
-        return NextResponse.redirect(`${ origin}/auth/login?p=${ requestedPage }`)
+        return NextResponse.redirect(new URL(`${origin}/auth/login?p=${ requestedPage }`))
+    }
+
+    const validRoles = ['admin','super-user','SEO'];
+    if ( req.nextUrl.pathname.startsWith('/admin') ) {
+        if( !validRoles.includes( session.user.role ) ) {
+            return NextResponse.redirect(new URL('/', req.url));
+        }
     }
 
     return NextResponse.next();
 
-    // try {
-    //     await jose.jwtVerify( req.cookies.get('token') as string, new TextEncoder().encode( process.env.JWT_SECRET_SEED ));
-
-    //     return NextResponse.next();
-
-    // } catch (error) {
-
-    //     return NextResponse.redirect(`http://localhost:3000/auth/login?p=${ config.matcher }`);
-
-    // }
 }
 
 export const config = {
-    matcher: '/checkout/:path*'
+    matcher: ['/checkout/:path*','/admin/:path*','/api/admin/:path*'],
 }
