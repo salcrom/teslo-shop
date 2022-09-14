@@ -8,7 +8,7 @@ import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid'
 import { ShopLayout } from 'components/layouts'
 import { dbOrders } from 'database';
 import { IOrder } from 'interfaces';
-import { ShippingAddress } from '../../interfaces/order';
+
 
 
 const columns: GridColDef[] = [

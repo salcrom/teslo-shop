@@ -15,7 +15,7 @@ type Data =
 
 
 export default function handler (req: NextApiRequest, res: NextApiResponse<Data>) {
-    
+
     switch ( req.method ) {
         case 'GET':
             return getUsers(req, res);
@@ -26,10 +26,6 @@ export default function handler (req: NextApiRequest, res: NextApiResponse<Data>
         default:
             return res.status(400).json({ message: 'Bad request' })
     }
-    
-    
-    
-    res.status(200).json({ message: 'Example' })
 }
 
 const getUsers = async(req: NextApiRequest, res: NextApiResponse<Data>) => {
@@ -42,7 +38,7 @@ const getUsers = async(req: NextApiRequest, res: NextApiResponse<Data>) => {
 
 }
 const updateUser = async(req: NextApiRequest, res: NextApiResponse<Data>) => {
-    
+
     const { userId = '', role = '' } = req.body;
 
     if ( !isValidObjectId(userId) ) {
