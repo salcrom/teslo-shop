@@ -129,7 +129,7 @@ export const CartProvider:FC<PropsWithChildren> = ({ children }) => {
         }
 
         const body: IOrder = {
-            orderItems: state.cart.map( p => ({
+            orderItems: state.cart.map(p => ({
                 ...p,
                 size: p.size!
             })),
@@ -138,7 +138,8 @@ export const CartProvider:FC<PropsWithChildren> = ({ children }) => {
             subTotal: state.subTotal,
             tax: state.tax,
             total: state.total,
-            isPaid: false
+            isPaid: false,
+            createdAt: ''
         }
 
         try {
