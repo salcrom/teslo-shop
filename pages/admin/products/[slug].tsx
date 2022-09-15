@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { GetServerSideProps } from 'next'
 import { useForm } from 'react-hook-form';
 
-import { DriveFileRenameOutline, SaveOutlined, UploadOutlined } from '@mui/icons-material';
+import { AirlineSeatIndividualSuiteSharp, DriveFileRenameOutline, SaveOutlined, UploadOutlined } from '@mui/icons-material';
 import { Box, Button, capitalize, Card, CardActions, CardMedia, Checkbox, Chip, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, ListItem, Paper, Radio, RadioGroup, TextField } from '@mui/material';
 
 import { AdminLayout } from '../../../components/layouts'
@@ -37,6 +37,15 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
     const { register, handleSubmit, formState:{ errors }, getValues, setValue } = useForm<FormData>({
         defaultValues: product
     })
+
+    const onChangeSize = ( size: string ) => {
+        const currentSizes = getValues('sizes');
+        if ( currentSizes.includes( size ) ) {
+            return setValue('sizes', currentSizes.filter( s => s != size ), { shouldValidate: true } )
+        }
+
+        setValue('sizes', [ ...currentSizes, size ], { shouldValidate: true });
+    }
 
     const onDeleteTag = ( tag: string ) => {
 
@@ -168,7 +177,12 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                             <FormLabel>Tallas</FormLabel>
                             {
                                 validSizes.map(size => (
-                                    <FormControlLabel key={size} control={<Checkbox />} label={ size } />
+                                    <FormControlLabel
+                                        key={size}
+                                        control={<Checkbox checked={ getValues('sizes').includes(size)} />}
+                                        label={ size }
+                                        onChange={ () => onChangeSize( size ) }
+                                    />
                                 ))
                             }
                         </FormGroup>
