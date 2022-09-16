@@ -4,7 +4,6 @@ import { isValidObjectId } from 'mongoose';
 import { db } from 'database';
 import { IUser } from 'interfaces';
 import { User } from 'models';
-import { azAZ } from '@mui/material/locale';
 
 
 type Data =
