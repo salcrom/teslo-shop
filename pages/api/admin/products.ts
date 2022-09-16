@@ -23,6 +23,7 @@ export default function handler (req: NextApiRequest, res: NextApiResponse<Data>
             return updatedProduct(req, res)
 
         case 'POST':
+            return createProduct(req, res)
 
         default:
             return res.status(200).json({ message: 'Example' })
@@ -80,4 +81,36 @@ const updatedProduct = async(req: NextApiRequest, res: NextApiResponse<Data>) =>
         return res.status(400).json({ message: 'Revisar la consola del servidor' })
     }
 
+}
+
+
+const createProduct = async(req: NextApiRequest, res: NextApiResponse<Data>) => {
+    
+    const { images = [] } = req.body as IProduct;
+
+    if ( images.length < 2 ) {
+        return res.status(400).json({ message: 'El producto necesita al menos 2 imágenes' });
+    }
+
+    // TODO: posiblimente tendremos un localhost:3000//products/asdaasd.jpg
+
+    try {
+        await db.connect();
+        const productInDB = await Product.findOne({ slug: req.body.slug })
+        if ( productInDB ) {
+            await db.disconnect();
+            return res.status(400).json({ message: 'Ya existe un producto con ese slug' });
+        }
+
+        const product = new Product( req.body );
+        await product.save();
+        await db.disconnect();
+
+        res.status(201).json( product );
+
+    } catch (error) {
+        console.log(error);
+        await db.disconnect();
+        return res.status(400).json({ message: 'Revisar logs del servidor' })
+    }
 }
