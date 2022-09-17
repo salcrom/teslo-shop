@@ -1,4 +1,3 @@
-import React from 'react'
 import NextLink from 'next/link';
 import useSWR from 'swr';
 
@@ -21,7 +20,7 @@ const columns:GridColDef[] = [
                         component='img'
                         alt={ row.title }
                         className='fadeIn'
-                        image={ `/products/${ row.img }` }
+                        image={ row.img }
                     >
 
                     </CardMedia>
