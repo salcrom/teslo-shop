@@ -1,8 +1,10 @@
+import { useContext, useState } from "react"
+import { useRouter } from "next/router"
+
 import { Box, Divider, Drawer, IconButton, Input, InputAdornment, List, ListItem, ListItemIcon, ListItemText, ListSubheader, Button } from '@mui/material';
 import { AccountCircleOutlined, AdminPanelSettings, CategoryOutlined, ConfirmationNumberOutlined, DashboardOutlined, EscalatorWarningOutlined, FemaleOutlined, LoginOutlined, MaleOutlined, SearchOutlined, VpnKeyOutlined } from "@mui/icons-material"
-import { useContext, useState } from "react"
-import { AuthContext, UiContext } from "context"
-import { useRouter } from "next/router"
+
+import { AuthContext, UiContext } from "../../context"
 
 
 export const SideMenu = () => {

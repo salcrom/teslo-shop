@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
 import Head from 'next/head'
-import { Navbar, SideMenu } from 'components/ui';
+import { Navbar, SideMenu } from '../../components/ui';
 
 
 

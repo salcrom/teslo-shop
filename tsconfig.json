@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".", // Añadir esta línea para evitar en los import ../../nombre_fichero
+    // "baseUrl": ".", // Añadir esta línea para evitar en los import ../../nombre_fichero
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -14,7 +14,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "downlevelIteration": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

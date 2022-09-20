@@ -6,8 +6,8 @@ import { SWRConfig } from 'swr'
 import { ThemeProvider } from '@mui/material'
 
 import '../styles/globals.css'
-import { lightTheme } from 'themes'
-import { AuthProvider, CartProvider, UiProvider } from 'context'
+import { lightTheme } from '../themes'
+import { AuthProvider, CartProvider, UiProvider } from '../context'
 
 
 

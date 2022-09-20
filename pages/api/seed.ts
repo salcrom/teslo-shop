@@ -1,6 +1,7 @@
-import { db, seedDatabase } from 'database';
-import { Order, Product, User } from 'models';
 import type { NextApiRequest, NextApiResponse } from 'next'
+
+import { db, seedDatabase } from '../../database';
+import { Order, Product, User } from '../../models';
 
 
 type Data = {

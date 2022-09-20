@@ -4,12 +4,12 @@ import { useRouter } from 'next/router';
 
 import { Box, Button, Chip, Grid, Typography } from '@mui/material';
 
-import { ShopLayout } from 'components/layouts'
-import { ProductSlideshow, SizeSelector } from 'components/products';
-import { ItemCounter } from 'components/ui';
-import { ICartProduct, IProduct, ISize } from 'interfaces';
-import { dbProducts } from 'database';
-import { CartContext } from 'context';
+import { ShopLayout } from '../../components/layouts'
+import { ProductSlideshow, SizeSelector } from '../../components/products';
+import { ItemCounter } from '../../components/ui';
+import { ICartProduct, IProduct, ISize } from '../../interfaces';
+import { dbProducts } from '../../database';
+import { CartContext } from '../../context';
 
 
 interface Props {

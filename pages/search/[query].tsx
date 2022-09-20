@@ -2,10 +2,10 @@ import type { NextPage, GetServerSideProps } from 'next'
 
 import { Box, Typography } from '@mui/material'
 
-import { ShopLayout } from 'components/layouts'
-import { ProductList } from 'components/products'
-import { dbProducts } from 'database'
-import { IProduct } from 'interfaces'
+import { ShopLayout } from '../../components/layouts'
+import { ProductList } from '../../components/products'
+import { dbProducts } from '../../database'
+import { IProduct } from '../../interfaces'
 
 
 interface Props {

@@ -1,9 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { IProduct } from 'interfaces';
-import { db } from 'database';
-import { Product } from 'models';
 import { isValidObjectId } from 'mongoose';
+
+import { IProduct } from '../../../interfaces';
+import { db } from '../../../database';
+import { Product } from '../../../models';
 
 type Data =
     | {message: string }

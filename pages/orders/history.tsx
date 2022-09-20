@@ -5,9 +5,9 @@ import { getSession } from 'next-auth/react';
 import { Chip, Grid, Link, Typography } from '@mui/material'
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid'
 
-import { ShopLayout } from 'components/layouts'
-import { dbOrders } from 'database';
-import { IOrder } from 'interfaces';
+import { ShopLayout } from '../../components/layouts'
+import { dbOrders } from '../../database';
+import { IOrder } from '../../interfaces';
 
 
 

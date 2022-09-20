@@ -3,12 +3,12 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 
 import { Box, Button, Card, CardContent, Chip, Divider, Grid, Link, Typography } from "@mui/material"
-
-import { CartContext } from 'context';
-import { CartList, OrderSummary } from "components/cart"
-import { ShopLayout } from "components/layouts"
-import { countries } from 'utils';
 import Cookies from 'js-cookie';
+
+import { CartContext } from '../../context';
+import { CartList, OrderSummary } from "../../components/cart"
+import { ShopLayout } from "../../components/layouts"
+import { countries } from '../../utils';
 
 
 

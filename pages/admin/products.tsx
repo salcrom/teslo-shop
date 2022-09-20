@@ -6,8 +6,8 @@ import { AddOutlined, CategoryOutlined } from '@mui/icons-material'
 import { Box, Button, CardMedia, Grid, Link } from '@mui/material'
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 
-import { AdminLayout } from 'components/layouts'
-import { IProduct } from 'interfaces';
+import { AdminLayout } from '../../components/layouts'
+import { IProduct } from '../../interfaces';
 
 
 const columns:GridColDef[] = [

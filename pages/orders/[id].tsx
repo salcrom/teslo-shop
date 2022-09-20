@@ -7,12 +7,12 @@ import { PayPalButtons } from "@paypal/react-paypal-js";
 import { Box, Card, CardContent, Chip, CircularProgress, Divider, Grid, Typography } from "@mui/material"
 import { CreditCardOffOutlined, CreditScoreOutlined } from '@mui/icons-material';
 
-import { ShopLayout } from "components/layouts"
-import { CartList, OrderSummary } from "components/cart"
-import { dbOrders } from 'database';
-import { IOrder } from 'interfaces';
-import { countries } from 'utils';
-import { tesloApi } from 'api';
+import { ShopLayout } from "../../components/layouts"
+import { CartList, OrderSummary } from "../../components/cart"
+import { dbOrders } from '../../database';
+import { IOrder } from '../../interfaces';
+import { countries } from '../../utils';
+import { tesloApi } from '../../api';
 
 
 export type OrderResponseBody = {

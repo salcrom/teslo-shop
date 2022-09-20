@@ -5,9 +5,9 @@ import Cookies from "js-cookie"
 import { useForm } from "react-hook-form"
 import { Box, Button, FormControl, Grid, MenuItem, Select, TextField, Typography } from "@mui/material"
 
-import { ShopLayout } from "components/layouts"
-import { countries } from "utils"
-import { CartContext } from 'context';
+import { ShopLayout } from "../../components/layouts"
+import { countries } from "../../utils"
+import { CartContext } from '../../context';
 
 
 

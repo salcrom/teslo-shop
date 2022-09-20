@@ -3,9 +3,9 @@ import { useRouter } from "next/router"
 
 import { Box, Button, Card, CardContent, Divider, Grid, Typography } from "@mui/material"
 
-import { CartList, OrderSummary } from "components/cart"
-import { ShopLayout } from "components/layouts"
-import { CartContext } from "context"
+import { CartList, OrderSummary } from "../../components/cart"
+import { ShopLayout } from "../../components/layouts"
+import { CartContext } from "../../context"
 
 
 

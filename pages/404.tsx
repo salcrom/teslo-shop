@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material"
-import { ShopLayout } from "components/layouts"
+import { ShopLayout } from "../components/layouts"
 
 
 

@@ -1,10 +1,11 @@
 import { FC, useReducer, PropsWithChildren, useEffect } from 'react';
-import Cookie from 'js-cookie';
 
-import { ICartProduct, IOrder, ShippingAddress } from 'interfaces';
-import { CartContext, cartReducer } from './';
-import { tesloApi } from 'api';
+import Cookie from 'js-cookie';
 import axios from 'axios';
+
+import { ICartProduct, IOrder, ShippingAddress } from '../../interfaces';
+import { CartContext, cartReducer } from './';
+import { tesloApi } from '../../api';
 
 
 export interface CartState {

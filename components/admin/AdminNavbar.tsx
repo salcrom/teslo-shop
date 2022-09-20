@@ -3,7 +3,7 @@ import NextLink from 'next/link';
 
 import { AppBar, Box, Button, Link, Toolbar, Typography } from '@mui/material'
 
-import { UiContext } from 'context';
+import { UiContext } from '../../context';
 
 
 

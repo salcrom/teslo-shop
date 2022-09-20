@@ -1,9 +1,12 @@
-import axios from 'axios';
-import { db, dbOrders } from 'database';
-import { IPaypal } from 'interfaces';
-import { Order } from 'models';
+// import { useContext } from 'react';
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { useContext } from 'react';
+
+import axios from 'axios';
+
+import { db, dbOrders } from '../../../database';
+import { IPaypal } from '../../../interfaces';
+import { Order } from '../../../models';
+
 
 type Data = {
     message: string

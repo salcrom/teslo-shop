@@ -1,5 +1,6 @@
-import { IUser } from 'interfaces';
 import { createContext } from 'react';
+
+import { IUser } from '../../interfaces';
 
 
 interface ContextProps {

@@ -8,8 +8,8 @@ import { useForm } from 'react-hook-form';
 import { Box, Button, Chip, Divider, Grid, Link, TextField, Typography } from '@mui/material'
 import { ErrorOutline } from '@mui/icons-material';
 
-import { AuthLayout } from 'components/layouts'
-import { validations } from 'utils';
+import { AuthLayout } from '../../components/layouts'
+import { validations } from '../../utils';
 
 
 

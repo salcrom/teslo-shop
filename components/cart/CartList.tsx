@@ -3,10 +3,10 @@ import NextLink from 'next/link';
 
 import { Box, Button, CardActionArea, CardMedia, Grid, Link, Typography } from "@mui/material"
 
-import { ItemCounter } from 'components/ui';
-import { CartContext } from 'context';
-import { ICartProduct } from 'interfaces';
-import { currency } from "utils"
+import { ItemCounter } from '../../components/ui';
+import { CartContext } from '../../context';
+import { ICartProduct } from '../../interfaces';
+import { currency } from "../../utils"
 import { IOrderItem } from '../../interfaces/order';
 
 

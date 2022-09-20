@@ -3,11 +3,11 @@ import { GetServerSideProps, NextPage } from 'next'
 import { Box, Card, CardContent, Chip, Divider, Grid, Typography } from "@mui/material"
 import { AirplaneTicketOutlined, CreditCardOffOutlined, CreditScoreOutlined } from '@mui/icons-material';
 
-import { AdminLayout } from "components/layouts"
-import { CartList, OrderSummary } from "components/cart"
-import { dbOrders } from 'database';
-import { IOrder } from 'interfaces';
-import { countries } from 'utils';
+import { AdminLayout } from "../../../components/layouts"
+import { CartList, OrderSummary } from "../../../components/cart"
+import { dbOrders } from '../../../database';
+import { IOrder } from '../../../interfaces';
+import { countries } from '../../../utils';
 
 
 interface Props {
