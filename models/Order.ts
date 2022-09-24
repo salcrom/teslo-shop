@@ -1,6 +1,7 @@
 import mongoose, { Schema, model, Model } from 'mongoose';
+
 import { IOrder } from '../interfaces';
-import { ShippingAddress } from '../interfaces/order';
+// import { ShippingAddress } from '../interfaces/order';
 
 const orderSchema = new Schema({
     

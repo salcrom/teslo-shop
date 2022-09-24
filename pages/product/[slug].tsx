@@ -201,6 +201,3 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 export default ProductPage
-function addProductToCart() {
-  throw new Error('Function not implemented.');
-}

@@ -5,9 +5,9 @@ import { PeopleOutline } from '@mui/icons-material'
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid'
 import { Grid, MenuItem, Select } from '@mui/material'
 
-import { AdminLayout } from 'components/layouts'
-import { IUser } from 'interfaces'
-import { tesloApi } from 'api'
+import { AdminLayout } from '../../components/layouts'
+import { IUser } from '../../interfaces'
+import { tesloApi } from '../../api'
 
 
 

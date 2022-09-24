@@ -1,7 +1,8 @@
 import NextAuth from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import Credentials from "next-auth/providers/credentials"
-import { dbUsers } from "database";
+
+import { dbUsers } from "../../../database";
 
 
 

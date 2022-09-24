@@ -4,9 +4,9 @@ import useSWR from 'swr';
 import { AccessTimeOutlined, AttachMoneyOutlined, CancelPresentationOutlined, CategoryOutlined, CreditCardOffOutlined, CreditCardOutlined, DashboardOutlined, GroupOutlined, ProductionQuantityLimitsOutlined } from '@mui/icons-material'
 import { Grid, Typography } from '@mui/material';
 
-import { AdminLayout } from 'components/layouts'
-import { SummaryTile } from 'components/admin';
-import { DashboardSummaryResponse } from 'interfaces';
+import { AdminLayout } from '../../components/layouts'
+import { SummaryTile } from '../../components/admin';
+import { DashboardSummaryResponse } from '../../interfaces';
 
 
 const DashboardPage = () => {

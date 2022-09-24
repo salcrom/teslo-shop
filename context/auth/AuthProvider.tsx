@@ -2,12 +2,13 @@ import { FC, useReducer, PropsWithChildren, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSession,signOut } from 'next-auth/react'
 import Cookies from 'js-cookie';
+import axios from 'axios';
+
+import { Email } from '@mui/icons-material';
 
 import { AuthContext, authReducer } from './';
 import { IUser } from 'interfaces';
 import { tesloApi } from 'api';
-import axios from 'axios';
-import { Email } from '@mui/icons-material';
 
 export interface AuthState {
     isLoggedIn: boolean;

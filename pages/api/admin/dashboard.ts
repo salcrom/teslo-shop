@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { db } from 'database';
-import { Order, Product, User } from 'models';
+import { db } from '../../../database';
+import { Order, Product, User } from '../../../models';
 
 
 type Data = {

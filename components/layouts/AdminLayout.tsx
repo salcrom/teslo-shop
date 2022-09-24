@@ -2,8 +2,8 @@ import { FC, PropsWithChildren } from 'react';
 
 import { Box, Typography } from '@mui/material';
 
-import { SideMenu } from 'components/ui';
-import { AdminNavbar } from 'components/admin';
+import { SideMenu } from '../../components/ui';
+import { AdminNavbar } from '../../components/admin';
 
 
 

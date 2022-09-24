@@ -1,12 +1,12 @@
 import React from 'react'
+import useSWR from 'swr';
 
 import { ConfirmationNumberOutlined } from '@mui/icons-material'
-
-import { AdminLayout } from 'components/layouts'
 import { Chip, Grid } from '@mui/material'
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import useSWR from 'swr';
-import { IOrder, IUser } from 'interfaces';
+
+import { AdminLayout } from '../../components/layouts'
+import { IOrder, IUser } from '../../interfaces';
 
 
 const columns:GridColDef[] = [

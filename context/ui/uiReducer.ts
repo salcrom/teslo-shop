@@ -1,8 +1,11 @@
-
 import { UiState } from './'
+
 
 type UiActionType =
 | { type: '[UI] - ToggleMenu' }
+
+
+
 
 export const uiReducer = ( state: UiState, action: UiActionType ): UiState => {
 

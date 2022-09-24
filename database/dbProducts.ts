@@ -1,6 +1,6 @@
-import { db } from "database"
-import { IProduct } from "interfaces";
-import { Product } from "models";
+import { db } from "./"
+import { IProduct } from "../interfaces";
+import { Product } from "../models";
 
 
 export const getProductBySlug = async( slug: string ): Promise<IProduct | null> => {
